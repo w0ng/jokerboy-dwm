@@ -1,0 +1,46 @@
+Homepage: http://hg.punctweb.ro
+
+--- a/dwm.c	2012-06-24 11:03:56.156900806 +0300
++++ b/dwm.c	2012-06-24 11:03:56.166900806 +0300
+@@ -94,7 +94,7 @@ struct Client {
+ 	int basew, baseh, incw, inch, maxw, maxh, minw, minh;
+ 	int bw, oldbw;
+ 	unsigned int tags;
+-	Bool isfixed, isfloating, isurgent, neverfocus, oldstate, isfullscreen, needresize, iscentred;
++	Bool isfixed, isfloating, isurgent, neverfocus, oldstate, isfullscreen, needresize, iscentred, hasborder;
+ 	Client *next;
+ 	Client *snext;
+ 	Monitor *mon;
+@@ -165,6 +165,7 @@ typedef struct {
+ 	unsigned int tags;
+ 	Bool isfloating;
+ 	Bool iscentred;
++	Bool hasborder;
+ 	int monitor;
+ } Rule;
+ 
+@@ -334,6 +335,7 @@ applyrules(Client *c) {
+ 	/* rule matching */
+ 	c->isfloating = c->tags = 0;
+ 	c->iscentred = 1;
++	c->hasborder = 1;
+ 	XGetClassHint(dpy, c->win, &ch);
+ 	class    = ch.res_class ? ch.res_class : broken;
+ 	instance = ch.res_name  ? ch.res_name  : broken;
+@@ -346,6 +348,7 @@ applyrules(Client *c) {
+ 		{
+ 			c->isfloating = r->isfloating;
+ 			c->iscentred = r->iscentred;
++			c->hasborder = r->hasborder;
+ 			c->tags |= r->tags;
+ 			for(m = mons; m && m->num != r->monitor; m = m->next);
+ 			if(m)
+@@ -1248,7 +1251,7 @@ manage(Window w, XWindowAttributes *wa)
+ 	/* only fix client y-offset, if the client center might cover the bar */
+ 	c->y = MAX(c->y, ((c->mon->by == c->mon->my) && (c->x + (c->w / 2) >= c->mon->wx)
+ 	           && (c->x + (c->w / 2) < c->mon->wx + c->mon->ww)) ? bh : c->mon->my);
+-	c->bw = borderpx;
++	c->bw = c->hasborder ? borderpx : 0;
+ 
+ 	if(!strcmp(c->name, scratchpadname)) {
+ 		c->mon->tagset[c->mon->seltags] |= c->tags = scratchtag;

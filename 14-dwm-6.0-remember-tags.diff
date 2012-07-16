@@ -1,0 +1,91 @@
+Homepage: http://hg.punctweb.ro
+
+--- a/dwm.c	2012-06-24 11:03:56.086900806 +0300
++++ b/dwm.c	2012-06-24 11:03:56.086900806 +0300
+@@ -63,6 +63,7 @@ enum { NetSupported, NetWMName, NetWMSta
+        NetWMFullscreen, NetActiveWindow, NetWMWindowType,
+        NetWMWindowTypeDialog, NetClientList, NetLast };     /* EWMH atoms */
+ enum { WMProtocols, WMDelete, WMState, WMTakeFocus, WMLast }; /* default atoms */
++enum { DWMTags, DWMLast };                              /* DWM atoms */
+ enum { ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle,
+        ClkClientWin, ClkRootWin, ClkLast };             /* clicks */
+ 
+@@ -274,6 +275,7 @@ static void gaplessgrid(Monitor *m);
+ static void pidgin(Monitor *m);
+ static void togglescratch(const Arg *arg);
+ static void togglemax(const Arg *arg);
++static void settagsatom(Window w, unsigned int tags);
+ 
+ /* variables */
+ static const char broken[] = "broken";
+@@ -299,7 +301,7 @@ static void (*handler[LASTEvent]) (XEven
+ 	[PropertyNotify] = propertynotify,
+ 	[UnmapNotify] = unmapnotify
+ };
+-static Atom wmatom[WMLast], netatom[NetLast];
++static Atom wmatom[WMLast], netatom[NetLast], dwmatom[DWMLast];
+ static Bool running = True;
+ static Cursor cursor[CurLast];
+ static Display *dpy;
+@@ -1172,6 +1174,10 @@ manage(Window w, XWindowAttributes *wa)
+ 	Client *c, *t = NULL;
+ 	Window trans = None;
+ 	XWindowChanges wc;
++	int format;
++	unsigned int *ptags;
++	unsigned long n, extra;
++	Atom atom;
+ 
+ 	if(!(c = calloc(1, sizeof(Client))))
+ 		die("fatal: could not malloc() %u bytes\n", sizeof(Client));
+@@ -1184,7 +1190,13 @@ manage(Window w, XWindowAttributes *wa)
+ 	else {
+ 		c->mon = selmon;
+ 		applyrules(c);
++		if(XGetWindowProperty(dpy, c->win, dwmatom[DWMTags], 0L, 1L, False, XA_CARDINAL,
++		                      &atom, &format, &n, &extra, (unsigned char **)&ptags) == Success && n == 1 && *ptags != 0) {
++			c->tags = *ptags;
++			XFree(ptags);
++		}
+ 	}
++	settagsatom(c->win, c->tags);
+ 	/* geometry */
+ 	c->x = c->oldx = wa->x;
+ 	c->y = c->oldy = wa->y;
+@@ -1687,6 +1699,7 @@ setup(void) {
+ 	netatom[NetWMWindowType] = XInternAtom(dpy, "_NET_WM_WINDOW_TYPE", False);
+ 	netatom[NetWMWindowTypeDialog] = XInternAtom(dpy, "_NET_WM_WINDOW_TYPE_DIALOG", False);
+ 	netatom[NetClientList] = XInternAtom(dpy, "_NET_CLIENT_LIST", False);
++	dwmatom[DWMTags] = XInternAtom(dpy, "_DWM_TAGS", False);
+ 	/* init cursors */
+ 	cursor[CurNormal] = XCreateFontCursor(dpy, XC_left_ptr);
+ 	cursor[CurResize] = XCreateFontCursor(dpy, XC_sizing);
+@@ -1764,6 +1777,7 @@ void
+ tag(const Arg *arg) {
+ 	if(selmon->sel && arg->ui & TAGMASK) {
+ 		selmon->sel->tags = arg->ui & TAGMASK;
++		settagsatom(selmon->sel->win, selmon->sel->tags);
+ 		focus(NULL);
+ 		arrange(selmon);
+ 		if(viewontag)
+@@ -1856,6 +1870,7 @@ toggletag(const Arg *arg) {
+ 		}
+ 		selmon->sel->tags = newtags;
+ 		selmon->lt[selmon->sellt] = selmon->lts[selmon->curtag];
++		settagsatom(selmon->sel->win, selmon->sel->tags);
+ 		focus(NULL);
+ 		arrange(selmon);
+ 	}
+@@ -2506,6 +2521,12 @@ togglemax(const Arg *arg) {
+ 	}
+ }
+ 
++void
++settagsatom(Window w, unsigned int tags) {
++	XChangeProperty(dpy, w, dwmatom[DWMTags], XA_CARDINAL, 32,
++	                PropModeReplace, (unsigned char*)&tags, 1);
++}
++
+ int
+ main(int argc, char *argv[]) {
+ 	if(argc == 2 && !strcmp("-v", argv[1]))

@@ -1,0 +1,17 @@
+Homepage: http://hg.punctweb.ro
+
+--- a/dwm.c	2012-06-24 11:03:55.976900806 +0300
++++ b/dwm.c	2012-06-24 11:03:55.986900806 +0300
+@@ -1406,7 +1406,11 @@ resizeclient(Client *c, int x, int y, in
+ 	c->oldy = c->y; c->y = wc.y = y;
+ 	c->oldw = c->w; c->w = wc.width = w;
+ 	c->oldh = c->h; c->h = wc.height = h;
+-	wc.border_width = c->bw;
++	wc.border_width = c->mon->lt[c->mon->sellt]->arrange == monocle && !c->isfloating ? 0 : c->bw;
++	if(c->mon->lt[c->mon->sellt]->arrange == monocle && !c->isfloating) {
++		c->w = wc.width += 2 * c->bw;
++		c->h = wc.height += 2 * c->bw;
++	}
+ 	XConfigureWindow(dpy, c->win, CWX|CWY|CWWidth|CWHeight|CWBorderWidth, &wc);
+ 	configure(c);
+ 	XSync(dpy, False);

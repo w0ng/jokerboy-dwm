@@ -1,0 +1,42 @@
+Homepage: http://hg.punctweb.ro
+
+--- a/dwm.c	2012-06-24 11:03:55.966900806 +0300
++++ b/dwm.c	2012-06-24 11:03:55.966900806 +0300
+@@ -760,6 +760,7 @@ drawbar(Monitor *m) {
+ 	int x;
+ 	unsigned int i, occ = 0, urg = 0;
+ 	unsigned long *col;
++	unsigned int a = 0, s = 0;
+ 	Client *c;
+ 
+ 	for(c = m->clients; c; c = c->next) {
+@@ -776,6 +777,14 @@ drawbar(Monitor *m) {
+ 		           occ & 1 << i, urg & 1 << i, col);
+ 		dc.x += dc.w;
+ 	}
++	if(m->lt[m->sellt]->arrange == monocle) {
++		for(a = 0, s = 0, c= nexttiled(m->clients); c; c= nexttiled(c->next), a++)
++			if(c == m->stack)
++				s = a;
++		if(!s && a)
++			s = a;
++		snprintf(m->ltsymbol, sizeof m->ltsymbol, "[%d/%d]", s, a);
++	}
+ 	dc.w = blw = TEXTW(m->ltsymbol);
+ 	drawtext(m->ltsymbol, dc.norm, False);
+ 	dc.x += dc.w;
+@@ -1236,14 +1245,8 @@ maprequest(XEvent *e) {
+ 
+ void
+ monocle(Monitor *m) {
+-	unsigned int n = 0;
+ 	Client *c;
+ 
+-	for(c = m->clients; c; c = c->next)
+-		if(ISVISIBLE(c))
+-			n++;
+-	if(n > 0) /* override layout symbol */
+-		snprintf(m->ltsymbol, sizeof m->ltsymbol, "[%d]", n);
+ 	for(c = nexttiled(m->clients); c; c = nexttiled(c->next))
+ 		resize(c, m->wx, m->wy, m->ww - 2 * c->bw, m->wh - 2 * c->bw, False);
+ }

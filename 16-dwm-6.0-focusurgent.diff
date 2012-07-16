@@ -1,0 +1,45 @@
+Homepage: http://hg.punctweb.ro
+
+--- a/dwm.c	2012-06-24 11:03:56.116900806 +0300
++++ b/dwm.c	2012-06-24 11:03:56.116900806 +0300
+@@ -277,6 +277,7 @@ static void pidgin(Monitor *m);
+ static void togglescratch(const Arg *arg);
+ static void togglemax(const Arg *arg);
+ static void settagsatom(Window w, unsigned int tags);
++static void focusurgent(const Arg *arg);
+ 
+ /* variables */
+ static const char broken[] = "broken";
+@@ -2536,6 +2537,32 @@ settagsatom(Window w, unsigned int tags)
+ 	                PropModeReplace, (unsigned char*)&tags, 1);
+ }
+ 
++void
++focusurgent(const Arg *arg) {
++	Client *c;
++	Monitor *m;
++	unsigned int i;
++
++	for(m = mons; m; m = m->next) {
++		for(c = m->clients; c; c = c->next) {
++			if(c->isurgent) {
++				selmon = m;
++				if(!ISVISIBLE(c)) {
++					selmon->seltags ^= 1;
++					selmon->tagset[selmon->seltags] = c->tags;
++					selmon->prevtag = selmon->curtag;
++					for(i=0; !(c->tags & 1 << i); i++);
++					selmon->curtag = i + 1;
++					selmon->lt[selmon->sellt] = selmon->lts[selmon->curtag];
++				}
++				focus(c);
++				arrange(selmon);
++				return;
++			}
++		}
++	}
++}
++
+ int
+ main(int argc, char *argv[]) {
+ 	if(argc == 2 && !strcmp("-v", argv[1]))
