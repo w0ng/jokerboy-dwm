@@ -1,7 +1,7 @@
 Homepage: http://hg.punctweb.ro
 
---- a/dwm.c	2012-06-24 11:03:55.946900806 +0300
-+++ b/dwm.c	2012-06-24 11:03:55.956900806 +0300
+--- a/dwm.c	2012-07-22 14:56:54.149763979 +0300
++++ b/dwm.c	2012-07-22 14:56:54.151763979 +0300
 @@ -271,6 +271,7 @@ static void cycle(const Arg *arg);
  static int shifttag(int dist);
  static void tagcycle(const Arg *arg);
@@ -10,7 +10,7 @@ Homepage: http://hg.punctweb.ro
  
  /* variables */
  static const char broken[] = "broken";
-@@ -2368,6 +2369,56 @@ gaplessgrid(Monitor *m) {
+@@ -2385,6 +2386,56 @@ gaplessgrid(Monitor *m) {
  		}
  	}
  }

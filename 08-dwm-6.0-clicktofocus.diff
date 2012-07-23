@@ -1,8 +1,8 @@
 Homepage: http://hg.punctweb.ro
 
---- a/dwm.c	2012-06-24 11:03:55.996900806 +0300
-+++ b/dwm.c	2012-06-24 11:03:55.996900806 +0300
-@@ -863,6 +863,8 @@ drawtext(const char *text, unsigned long
+--- a/dwm.c	2012-07-22 14:56:54.190763982 +0300
++++ b/dwm.c	2012-07-22 14:56:54.192763982 +0300
+@@ -868,6 +868,8 @@ drawtext(const char *text, unsigned long
  
  void
  enternotify(XEvent *e) {
@@ -11,7 +11,7 @@ Homepage: http://hg.punctweb.ro
  	Client *c;
  	Monitor *m;
  	XCrossingEvent *ev = &e->xcrossing;
-@@ -1253,6 +1255,8 @@ monocle(Monitor *m) {
+@@ -1258,6 +1260,8 @@ monocle(Monitor *m) {
  
  void
  motionnotify(XEvent *e) {

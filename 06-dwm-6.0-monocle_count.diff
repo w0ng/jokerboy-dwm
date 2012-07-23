@@ -1,8 +1,8 @@
 Homepage: http://hg.punctweb.ro
 
---- a/dwm.c	2012-06-24 11:03:55.966900806 +0300
-+++ b/dwm.c	2012-06-24 11:03:55.966900806 +0300
-@@ -760,6 +760,7 @@ drawbar(Monitor *m) {
+--- a/dwm.c	2012-07-22 14:56:54.163763980 +0300
++++ b/dwm.c	2012-07-22 14:56:54.165763980 +0300
+@@ -765,6 +765,7 @@ drawbar(Monitor *m) {
  	int x;
  	unsigned int i, occ = 0, urg = 0;
  	unsigned long *col;
@@ -10,7 +10,7 @@ Homepage: http://hg.punctweb.ro
  	Client *c;
  
  	for(c = m->clients; c; c = c->next) {
-@@ -776,6 +777,14 @@ drawbar(Monitor *m) {
+@@ -781,6 +782,14 @@ drawbar(Monitor *m) {
  		           occ & 1 << i, urg & 1 << i, col);
  		dc.x += dc.w;
  	}
@@ -25,7 +25,7 @@ Homepage: http://hg.punctweb.ro
  	dc.w = blw = TEXTW(m->ltsymbol);
  	drawtext(m->ltsymbol, dc.norm, False);
  	dc.x += dc.w;
-@@ -1236,14 +1245,8 @@ maprequest(XEvent *e) {
+@@ -1241,14 +1250,8 @@ maprequest(XEvent *e) {
  
  void
  monocle(Monitor *m) {

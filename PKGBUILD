@@ -1,4 +1,4 @@
-dwm_patch=${dwm_patch:-1}
+#Homepage: http://hg.punctweb.ro
 
 pkgname=dwm
 pkgver=6.0
@@ -29,32 +29,34 @@ source=("${pkgname}-${pkgver}.tar.gz::http://hg.suckless.org/${pkgname}/archive/
         "16-${pkgname}-${pkgver}-focusurgent.diff"
         "17-${pkgname}-${pkgver}-statuscolors.diff"
         "18-${pkgname}-${pkgver}-save_floats.diff"
-        "19-${pkgname}-${pkgver}-hasborder.diff")
-sha256sums=('dd933101f2108019a9aa4b117ed6137077e2292791f11c348caf4431ea84326c'
-            'd1da36682d749580c0d7a3216f3d61b84b37de18b06da694269b3d9a637bdc05'
-            '0dd29c9dc647312fb98445f64b0434fe063fd3327848e1c26050c689a95cb4e8'
-            'b2e7d373ae9c4fc78d4367af115283675269458b1d9578cc185827d108916806'
-            'aab3e12f450602b1ffa243e22f64b12f954ab0d1f8982e9cc831111f8b763261'
-            '85c6ed2f303b85d94f6314100cd3d8e3247b461e1e8d96f4a61c4dac8333ca6f'
-            '71a29f0c006c33814ec5f087b2ea7a1335cffad1034bd95984076a4ee161b6fc'
-            'bcd8478adf8b9b14b006286411cb9c0d8508b1fa1cd5f7b4f920249577d1400c'
-            'aac869dc6fb2dd08f26d40aaddf10d461ab8dfa2ff5546ca09266153920a1714'
-            'fe4042782f98ca296bcd434e89ea43ff80abec746f8ccb0a5668fa2e3c4ddeee'
-            'b60f5adadb448785d4ee84edb34a2421f200bad1b64f166b6043a5b96749ddd4'
-            '10b36d6d36570881e4504af50fcfcc3fa6356cdb0e5ecf627dfca84bab84eb64'
-            '1caeee472b3440b9c47aed57ab46e1bbb0408e2148e2383e4941cd79d8e86d7a'
-            'a159d17c61d29b8607c3857bea1e9edd011f82b8a463abe15847f54a81f5498a'
-            '61354392e2737506924cce85fce25c540bb9404bc63407266a1e79d5b12ddead'
-            '0d19e5309af5e3b04810b6dea214da206cf7736816e29aa23bd073b0465842cd'
-            'b1cd0f32fae0425ec49a02cffb8a64cde427d8a03201400cb1758d60763caf2d'
-            '7bd1a03bec1e30813d74540161b8cae47b0ee610bb43930f5b4e689acb3af696'
-            'da6d519c6ce95eb6517d9b88d2338ff6cdf3ef5f8c46dbc5136eab7ebaef8712'
-            '6114f2d15954b2179ef2487b78a43bea94361a6c35561699f905e35493cff536'
-            '68a79688b05fe97e4630ce89d28a5872af9ae91b8a1ee6d2a790cdda1c550b9c')
+        "19-${pkgname}-${pkgver}-systray.diff"
+        "20-${pkgname}-${pkgver}-centerwindow.diff")
+sha256sums=('bb5c4bb7ba052a5498118eeb571165997f7dae62580c1be1a5cdf11e03bc8127'
+            '0aaacdcc9862530c00ed2e871bc9184696083bf23d77b6adda2142ce7ac62d2b'
+            '3f75f08692af6be293dc5c2218094b550409c3d8045243ccee6e0e33d043c157'
+            '2ba86ae4b9c8004dc13e5fe38f30fb3ac471b2e86f3a998796171739574678f8'
+            'a6c9ab6cba332f08f3ca4672507e5804c8fc1855816c44abb799762c7677ba86'
+            '3b3ca4efaca91ac2d7c307e4510fe26585a49b3eb6cb3505f277e3ed7507f665'
+            '7899bb947553c3b21b472ad4e9401271f93d04d0b5759a3f28701570bd791f56'
+            '774e08339285fa79059999895e8b2419346329572fc1f43ad07a467c69afd71c'
+            '9057914c3fa9a13fb395e906bd8e91b4755367e8cbd64bb433a0cf4b3612859b'
+            '8604aa3e7f043f47620e993179b12754d893c050d25b2c08190bd139e7594ce4'
+            'f26501e4f8b5938dee886b03fb8d71235c5974cefdb61a604f7deab20b709d3c'
+            '7ee5185dd709e9160427014e13adabf2ea2a80b02259ac91ebb41b52ea05d14d'
+            '3dfb565f11279dc7cf2aedc650ff4fca5f0ae04a9d0db1713167aac8569ebc99'
+            '588d275073c5085947567175296bebe11d1b8bd2866305bafc2a38204c288273'
+            'b5db8bb78f63f1973e87448608b849f6784f8182a3528051244b7f794f209d1b'
+            '92bc5d65a4065a4fce637cce563d171a9d1c77d0586fd6b274b0b8a9302d15aa'
+            '4eb72a5a9c0cba6c275847b7f6b2d6a8b57fcc017f1fd25178c67eaaa4a68ebc'
+            'e80fd59d2f9f1e2dd43946c4a8a6db60f834db4bad45d8f5dbf48ad7f3b6446b'
+            'eb713f35bd9501c1520e3d7d0149c0be10274b6fce2ac551350e0e8cf4d7ec12'
+            'c721221925c7ab006dd59721154e28ed462e43fe29b9616f3c95a99831020f96'
+            'c4396840993717ba33aaaf98c4b7f7fe9064237667cc6e4e1dade1e8d24f0988'
+            '7fa2486acd6ed6b8388bd476c7daaa403ae56e3dc9bbd1bcc62233585ed1e1ca')
 
 build() {
   cd "${srcdir}" && cd "`find . -type d -name dwm-\*`"
-  if [ "${dwm_patch}" == 1 ]; then
+  if [ "${dwm_patch:-1}" == 1 ]; then
     cp "${srcdir}/config.h" config.h
     for PATCH in "${source[@]:2}"; do
       msg "${PATCH##*/}" && patch -Np1 -i "${srcdir}/${PATCH##*/}"

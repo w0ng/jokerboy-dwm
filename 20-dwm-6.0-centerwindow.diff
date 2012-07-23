@@ -1,0 +1,29 @@
+Homepage: http://hg.punctweb.ro
+
+--- a/dwm.c	2012-07-22 14:56:54.360763992 +0300
++++ b/dwm.c	2012-07-22 14:56:54.363763992 +0300
+@@ -315,6 +315,7 @@ static void updatesystray(void);
+ static void updatesystrayicongeom(Client *i, int w, int h);
+ static void updatesystrayiconstate(Client *i, XPropertyEvent *ev);
+ static Client *wintosystrayicon(Window w);
++static void centerwindow(const Arg *arg);
+ 
+ /* variables */
+ static const char broken[] = "broken";
+@@ -2940,6 +2941,16 @@ wintosystrayicon(Window w) {
+ 	return i;
+ }
+ 
++void
++centerwindow(const Arg *arg) {
++	if(!selmon->sel || !selmon->sel->isfloating || selmon->sel->isfullscreen)
++		return;
++	selmon->sel->x = selmon->sel->oldx = selmon->wx + (selmon->ww / 2 - selmon->sel->w / 2);
++	selmon->sel->y = selmon->sel->oldy = selmon->wy + (selmon->wh / 2 - selmon->sel->h / 2);
++	XMoveResizeWindow(dpy, selmon->sel->win, selmon->sel->x, selmon->sel->y, selmon->sel->w, selmon->sel->h);
++	arrange(selmon);
++}
++
+ int
+ main(int argc, char *argv[]) {
+ 	if(argc == 2 && !strcmp("-v", argv[1]))

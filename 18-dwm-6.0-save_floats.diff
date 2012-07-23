@@ -1,7 +1,7 @@
 Homepage: http://hg.punctweb.ro
 
---- a/dwm.c	2012-06-24 11:03:56.146900806 +0300
-+++ b/dwm.c	2012-06-24 11:03:56.146900806 +0300
+--- a/dwm.c	2012-07-22 14:56:54.330763990 +0300
++++ b/dwm.c	2012-07-22 14:56:54.333763991 +0300
 @@ -90,6 +90,7 @@ struct Client {
  	float mina, maxa;
  	int x, y, w, h;
@@ -18,7 +18,7 @@ Homepage: http://hg.punctweb.ro
  
  /* variables */
  static const char broken[] = "broken";
-@@ -1263,6 +1265,7 @@ manage(Window w, XWindowAttributes *wa)
+@@ -1268,6 +1270,7 @@ manage(Window w, XWindowAttributes *wa)
  	updatewindowtype(c);
  	updatesizehints(c);
  	updatewmhints(c);
@@ -26,7 +26,7 @@ Homepage: http://hg.punctweb.ro
  	XSelectInput(dpy, w, EnterWindowMask|FocusChangeMask|PropertyChangeMask|StructureNotifyMask);
  	grabbuttons(c, False);
  	if(!c->isfloating)
-@@ -1680,10 +1683,18 @@ setfullscreen(Client *c, Bool fullscreen
+@@ -1685,10 +1688,18 @@ setfullscreen(Client *c, Bool fullscreen
  
  void
  setlayout(const Arg *arg) {
@@ -45,7 +45,7 @@ Homepage: http://hg.punctweb.ro
  	strncpy(selmon->ltsymbol, selmon->lt[selmon->sellt]->symbol, sizeof selmon->ltsymbol);
  	if(selmon->sel)
  		arrange(selmon);
-@@ -1890,8 +1901,10 @@ togglefloating(const Arg *arg) {
+@@ -1895,8 +1906,10 @@ togglefloating(const Arg *arg) {
  		return;
  	selmon->sel->isfloating = !selmon->sel->isfloating || selmon->sel->isfixed;
  	if(selmon->sel->isfloating)
@@ -58,7 +58,7 @@ Homepage: http://hg.punctweb.ro
  	arrange(selmon);
  }
  
-@@ -2601,6 +2614,14 @@ focusurgent(const Arg *arg) {
+@@ -2618,6 +2631,14 @@ focusurgent(const Arg *arg) {
  	}
  }
  

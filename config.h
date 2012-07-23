@@ -16,33 +16,34 @@ static const char colors[MAXCOLORS][ColLast][8] = {
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int snap      = 8;        /* snap pixel */
 static const Bool showbar           = True;     /* False means no bar */
+static const Bool showsystray       = True;     /* False means no systray */
 static const Bool topbar            = True;     /* False means bottom bar */
 static const Bool clicktofocus      = True;     /* Change focus only on click */
 static const Bool viewontag         = True;     /* Switch view on tag switch */
 
 static const Rule rules[] = {
-	/* class          instance     title       tags mask     isfloating   iscentred   hasborder   monitor */
-	{ "Gimp",         NULL,        NULL,       0,            True,        False,      True,       -1 },
-	{ "MPlayer",      NULL,        NULL,       0,            True,        True,       True,       -1 },
-	{ "mplayer2",     NULL,        NULL,       0,            True,        True,       True,       -1 },
-	{ "Vlc",          NULL,        NULL,       0,            True,        True,       True,       -1 },
-	{ "XFontSel",     NULL,        NULL,       0,            True,        True,       True,       -1 },
-	{ "Kcalc",        NULL,        NULL,       0,            True,        True,       True,       -1 },
-	{ "Wine",         NULL,        NULL,       0,            False,       True,       False,      -1 },
-	{ "Komodo Edit",  NULL,        NULL,       0,            True,        True,       True,       -1 },
-	{ "Komodo Edit",  "Komodo",    NULL,       0,            False,       False,      True,       -1 },
-	{ "Komodo Edit",  NULL,        "Find",     0,            True,        True,       True,       -1 },
-	{ "Chromium",     NULL,        NULL,       1 << 2,       False,       False,      True,       -1 },
-	{ "Firefox",      NULL,        NULL,       1 << 2,       True,        True,       True,       -1 },
-	{ "Firefox",      "Navigator", NULL,       1 << 2,       False,       False,      True,       -1 },
-	{ "Ktorrent",     NULL,        NULL,       1 << 4,       False,       False,      True,       -1 },
-	{ "VirtualBox",   NULL,        NULL,       1 << 5,       False,       False,      True,       -1 },
-	{ "VBoxSDL",      NULL,        NULL,       1 << 5,       False,       False,      True,       -1 },
-	{ "Xephyr",       NULL,        NULL,       0,            False,       False,      True,       -1 },
-	{ "Opera",        NULL,        NULL,       1 << 2,       False,       False,      True,       -1 },
-	{ "Pidgin",       NULL,        NULL,       1 << 3,       False,       False,      True,       -1 },
-	{ "Pidgin",       NULL,        "Pidgin",   1 << 3,       True,        True,       True,       -1 },
-	{ "Gyachi",       NULL,        NULL,       1 << 3,       False,       False,      True,       -1 },
+	/* class          instance     title       tags mask     isfloating   iscentred   monitor */
+	{ "Gimp",         NULL,        NULL,       0,            True,        False,      -1 },
+	{ "MPlayer",      NULL,        NULL,       0,            True,        True,       -1 },
+	{ "mplayer2",     NULL,        NULL,       0,            True,        True,       -1 },
+	{ "Vlc",          NULL,        NULL,       0,            True,        True,       -1 },
+	{ "XFontSel",     NULL,        NULL,       0,            True,        True,       -1 },
+	{ "Kcalc",        NULL,        NULL,       0,            True,        True,       -1 },
+	{ "Komodo Edit",  NULL,        NULL,       0,            True,        True,       -1 },
+	{ "Komodo Edit",  "Komodo",    NULL,       0,            False,       False,      -1 },
+	{ "Komodo Edit",  NULL,        "Find",     0,            True,        True,       -1 },
+	{ "Chromium",     NULL,        NULL,       1 << 2,       False,       False,      -1 },
+	{ "Firefox",      NULL,        NULL,       1 << 2,       True,        True,       -1 },
+	{ "Firefox",      "Navigator", NULL,       1 << 2,       False,       False,      -1 },
+	{ "Ktorrent",     NULL,        NULL,       1 << 4,       False,       False,      -1 },
+	{ "VirtualBox",   NULL,        NULL,       1 << 5,       False,       False,      -1 },
+	{ "VBoxSDL",      NULL,        NULL,       1 << 5,       False,       False,      -1 },
+	{ "Wine",         NULL,        NULL,       1 << 5,       False,       True,       -1 },
+	{ "Xephyr",       NULL,        NULL,       0,            False,       False,      -1 },
+	{ "Opera",        NULL,        NULL,       1 << 2,       False,       False,      -1 },
+	{ "Pidgin",       NULL,        NULL,       1 << 3,       False,       False,      -1 },
+	{ "Pidgin",       NULL,        "Pidgin",   1 << 3,       True,        True,       -1 },
+	{ "Gyachi",       NULL,        NULL,       1 << 3,       False,       False,      -1 },
 };
 
 /* layout(s) */
@@ -94,7 +95,7 @@ static const char *browserwcmd[]   = { "firefox", "-p", "work", NULL };
 static const char *browsergcmd[]   = { "firefox", "-p", "games", NULL };
 static const char *altbrowsercmd[] = { "chromium", NULL };
 static const char *secbrowsercmd[] = { "opera", NULL };
-static const char *editorcmd[]     = { "komodo", NULL };
+static const char *editorcmd[]     = { "komodoedit", NULL };
 static const char *imcmd[]         = { "pidgin", NULL };
 static const char *vboxcmd[]       = { "VirtualBox", NULL };
 static const char *volmcmd[]       = { "amixer", "-q", "sset", "Master", "toggle", NULL };
@@ -153,6 +154,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Tab,     view,           {0} },
 	{ ALTKEY,                       XK_Tab,     focusurgent,    {0} },
 	{ MODKEY,                       XK_Escape,  killclient,     {0} },
+	{ MODKEY|ShiftMask,             XK_c,       centerwindow,   {0} },
 	{ MODKEY|ControlMask,           XK_n,       setlayout,      {.v = &layouts[0]} },
 	{ MODKEY|ControlMask,           XK_m,       setlayout,      {.v = &layouts[1]} },
 	{ MODKEY|ControlMask,           XK_f,       setlayout,      {.v = &layouts[2]} },

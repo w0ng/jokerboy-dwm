@@ -1,8 +1,8 @@
 Homepage: http://hg.punctweb.ro
 
---- a/dwm.c	2012-06-24 11:03:55.976900806 +0300
-+++ b/dwm.c	2012-06-24 11:03:55.986900806 +0300
-@@ -1406,7 +1406,11 @@ resizeclient(Client *c, int x, int y, in
+--- a/dwm.c	2012-07-22 14:56:54.176763981 +0300
++++ b/dwm.c	2012-07-22 14:56:54.179763981 +0300
+@@ -1411,7 +1411,11 @@ resizeclient(Client *c, int x, int y, in
  	c->oldy = c->y; c->y = wc.y = y;
  	c->oldw = c->w; c->w = wc.width = w;
  	c->oldh = c->h; c->h = wc.height = h;

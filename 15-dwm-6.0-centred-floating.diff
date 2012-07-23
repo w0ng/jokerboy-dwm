@@ -1,7 +1,7 @@
 Homepage: http://hg.punctweb.ro
 
---- a/dwm.c	2012-06-24 11:03:56.096900806 +0300
-+++ b/dwm.c	2012-06-24 11:03:56.106900806 +0300
+--- a/dwm.c	2012-07-22 14:56:54.287763988 +0300
++++ b/dwm.c	2012-07-22 14:56:54.290763988 +0300
 @@ -92,7 +92,7 @@ struct Client {
  	int basew, baseh, incw, inch, maxw, maxh, minw, minh;
  	int bw, oldbw;
@@ -35,7 +35,7 @@ Homepage: http://hg.punctweb.ro
  			c->tags |= r->tags;
  			for(m = mons; m && m->num != r->monitor; m = m->next);
  			if(m)
-@@ -1198,8 +1201,14 @@ manage(Window w, XWindowAttributes *wa)
+@@ -1203,8 +1206,14 @@ manage(Window w, XWindowAttributes *wa)
  	}
  	settagsatom(c->win, c->tags);
  	/* geometry */

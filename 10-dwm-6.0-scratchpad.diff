@@ -1,7 +1,7 @@
 Homepage: http://hg.punctweb.ro
 
---- a/dwm.c	2012-06-24 11:03:56.026900806 +0300
-+++ b/dwm.c	2012-06-24 11:03:56.026900806 +0300
+--- a/dwm.c	2012-07-22 14:56:54.217763983 +0300
++++ b/dwm.c	2012-07-22 14:56:54.220763983 +0300
 @@ -272,6 +272,7 @@ static int shifttag(int dist);
  static void tagcycle(const Arg *arg);
  static void gaplessgrid(Monitor *m);
@@ -19,7 +19,7 @@ Homepage: http://hg.punctweb.ro
  /* compile-time check if all tags fit into an unsigned int bit array. */
  struct NumTags { char limitexceeded[LENGTH(tags) > 31 ? -1 : 1]; };
  
-@@ -1196,6 +1199,14 @@ manage(Window w, XWindowAttributes *wa)
+@@ -1201,6 +1204,14 @@ manage(Window w, XWindowAttributes *wa)
  	           && (c->x + (c->w / 2) < c->mon->wx + c->mon->ww)) ? bh : c->mon->my);
  	c->bw = borderpx;
  
@@ -34,7 +34,7 @@ Homepage: http://hg.punctweb.ro
  	wc.border_width = c->bw;
  	XConfigureWindow(dpy, w, CWBorderWidth, &wc);
  	XSetWindowBorder(dpy, w, dc.norm[ColBorder]);
-@@ -2433,6 +2444,28 @@ pidgin(Monitor *m) {
+@@ -2450,6 +2461,28 @@ pidgin(Monitor *m) {
  	}
  }
  
