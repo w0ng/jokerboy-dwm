@@ -1,7 +1,7 @@
 Homepage: http://hg.punctweb.ro
 
---- a/dwm.c	2012-07-22 14:56:54.273763987 +0300
-+++ b/dwm.c	2012-07-22 14:56:54.276763987 +0300
+--- a/dwm.c	2012-09-19 10:20:15.098714496 +0300
++++ b/dwm.c	2012-09-19 10:20:15.101714496 +0300
 @@ -63,6 +63,7 @@ enum { NetSupported, NetWMName, NetWMSta
         NetWMFullscreen, NetActiveWindow, NetWMWindowType,
         NetWMWindowTypeDialog, NetClientList, NetLast };     /* EWMH atoms */

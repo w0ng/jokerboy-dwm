@@ -1,7 +1,7 @@
 Homepage: http://hg.punctweb.ro
 
---- a/dwm.c	2012-07-22 14:56:54.121763977 +0300
-+++ b/dwm.c	2012-07-22 14:56:54.123763977 +0300
+--- a/dwm.c	2012-09-19 10:20:14.945714486 +0300
++++ b/dwm.c	2012-09-19 10:20:14.948714487 +0300
 @@ -267,6 +267,9 @@ static void bstack(Monitor *m);
  static Client *prevtiled(Client *c);
  static void pushup(const Arg *arg);

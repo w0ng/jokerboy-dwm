@@ -1,7 +1,7 @@
 Homepage: http://hg.punctweb.ro
 
---- a/dwm.c	2012-07-22 14:56:54.360763992 +0300
-+++ b/dwm.c	2012-07-22 14:56:54.363763992 +0300
+--- a/dwm.c	2012-09-19 10:20:15.186714502 +0300
++++ b/dwm.c	2012-09-19 10:20:15.189714502 +0300
 @@ -315,6 +315,7 @@ static void updatesystray(void);
  static void updatesystrayicongeom(Client *i, int w, int h);
  static void updatesystrayiconstate(Client *i, XPropertyEvent *ev);

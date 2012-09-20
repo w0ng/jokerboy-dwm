@@ -1,7 +1,7 @@
 Homepage: http://hg.punctweb.ro
 
---- a/dwm.c	2012-07-22 14:56:54.149763979 +0300
-+++ b/dwm.c	2012-07-22 14:56:54.151763979 +0300
+--- a/dwm.c	2012-09-19 10:20:14.974714488 +0300
++++ b/dwm.c	2012-09-19 10:20:14.976714488 +0300
 @@ -271,6 +271,7 @@ static void cycle(const Arg *arg);
  static int shifttag(int dist);
  static void tagcycle(const Arg *arg);

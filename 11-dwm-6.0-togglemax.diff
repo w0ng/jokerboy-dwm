@@ -1,7 +1,7 @@
 Homepage: http://hg.punctweb.ro
 
---- a/dwm.c	2012-07-22 14:56:54.231763984 +0300
-+++ b/dwm.c	2012-07-22 14:56:54.234763984 +0300
+--- a/dwm.c	2012-09-19 10:20:15.056714493 +0300
++++ b/dwm.c	2012-09-19 10:20:15.059714494 +0300
 @@ -273,6 +273,7 @@ static void tagcycle(const Arg *arg);
  static void gaplessgrid(Monitor *m);
  static void pidgin(Monitor *m);

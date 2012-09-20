@@ -1,7 +1,7 @@
 Homepage: http://hg.punctweb.ro
 
---- a/dwm.c	2012-07-22 14:56:54.344763991 +0300
-+++ b/dwm.c	2012-07-22 14:56:54.347763991 +0300
+--- a/dwm.c	2012-09-19 10:20:15.170714501 +0300
++++ b/dwm.c	2012-09-19 10:20:15.173714501 +0300
 @@ -57,12 +57,31 @@
  #define TEXTW(X)                (textnw(X, strlen(X)) + dc.font.height)
  #define MAXCOLORS               8

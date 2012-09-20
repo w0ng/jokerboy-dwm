@@ -1,7 +1,7 @@
 Homepage: http://hg.punctweb.ro
 
---- a/dwm.c	2012-07-22 14:56:54.107763976 +0300
-+++ b/dwm.c	2012-07-22 14:56:54.110763977 +0300
+--- a/dwm.c	2012-09-19 10:20:14.931714486 +0300
++++ b/dwm.c	2012-09-19 10:20:14.934714486 +0300
 @@ -264,6 +264,9 @@ static int xerrordummy(Display *dpy, XEr
  static int xerrorstart(Display *dpy, XErrorEvent *ee);
  static void zoom(const Arg *arg);
