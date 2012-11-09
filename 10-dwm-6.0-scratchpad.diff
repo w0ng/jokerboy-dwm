@@ -1,8 +1,8 @@
 Homepage: http://hg.punctweb.ro
 
---- a/dwm.c	2012-09-19 10:20:15.042714493 +0300
-+++ b/dwm.c	2012-09-19 10:20:15.045714493 +0300
-@@ -272,6 +272,7 @@ static int shifttag(int dist);
+--- a/dwm.c	2012-11-06 23:13:29.747844755 +0200
++++ b/dwm.c	2012-11-06 23:13:29.757844755 +0200
+@@ -273,6 +273,7 @@ static int shifttag(int dist);
  static void tagcycle(const Arg *arg);
  static void gaplessgrid(Monitor *m);
  static void pidgin(Monitor *m);
@@ -10,7 +10,7 @@ Homepage: http://hg.punctweb.ro
  
  /* variables */
  static const char broken[] = "broken";
-@@ -308,6 +309,8 @@ static Window root;
+@@ -309,6 +310,8 @@ static Window root;
  /* configuration, allows nested code to access above variables */
  #include "config.h"
  
@@ -19,7 +19,7 @@ Homepage: http://hg.punctweb.ro
  /* compile-time check if all tags fit into an unsigned int bit array. */
  struct NumTags { char limitexceeded[LENGTH(tags) > 31 ? -1 : 1]; };
  
-@@ -1201,6 +1204,14 @@ manage(Window w, XWindowAttributes *wa)
+@@ -1177,6 +1180,14 @@ manage(Window w, XWindowAttributes *wa)
  	           && (c->x + (c->w / 2) < c->mon->wx + c->mon->ww)) ? bh : c->mon->my);
  	c->bw = borderpx;
  
@@ -33,8 +33,8 @@ Homepage: http://hg.punctweb.ro
 +		c->tags &= TAGMASK;
  	wc.border_width = c->bw;
  	XConfigureWindow(dpy, w, CWBorderWidth, &wc);
- 	XSetWindowBorder(dpy, w, dc.norm[ColBorder]);
-@@ -2450,6 +2461,28 @@ pidgin(Monitor *m) {
+ 	XSetWindowBorder(dpy, w, dc.norm[ColBorder].pixel);
+@@ -2420,6 +2431,28 @@ pidgin(Monitor *m) {
  	}
  }
  

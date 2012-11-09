@@ -1,8 +1,8 @@
 Homepage: http://hg.punctweb.ro
 
---- a/dwm.c	2012-09-19 10:20:15.029714492 +0300
-+++ b/dwm.c	2012-09-19 10:20:15.032714492 +0300
-@@ -1752,6 +1752,8 @@ tag(const Arg *arg) {
+--- a/dwm.c	2012-11-06 23:13:29.737844755 +0200
++++ b/dwm.c	2012-11-06 23:13:29.737844755 +0200
+@@ -1726,6 +1726,8 @@ tag(const Arg *arg) {
  		selmon->sel->tags = arg->ui & TAGMASK;
  		focus(NULL);
  		arrange(selmon);

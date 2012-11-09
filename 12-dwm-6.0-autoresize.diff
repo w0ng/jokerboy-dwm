@@ -1,8 +1,8 @@
 Homepage: http://hg.punctweb.ro
 
---- a/dwm.c	2012-09-19 10:20:15.070714494 +0300
-+++ b/dwm.c	2012-09-19 10:20:15.073714495 +0300
-@@ -91,7 +91,7 @@ struct Client {
+--- a/dwm.c	2012-11-06 23:13:29.787844755 +0200
++++ b/dwm.c	2012-11-06 23:13:29.787844755 +0200
+@@ -93,7 +93,7 @@ struct Client {
  	int basew, baseh, incw, inch, maxw, maxh, minw, minh;
  	int bw, oldbw;
  	unsigned int tags;
@@ -11,7 +11,7 @@ Homepage: http://hg.punctweb.ro
  	Client *next;
  	Client *snext;
  	Monitor *mon;
-@@ -661,6 +661,8 @@ configurerequest(XEvent *e) {
+@@ -658,6 +658,8 @@ configurerequest(XEvent *e) {
  				configure(c);
  			if(ISVISIBLE(c))
  				XMoveResizeWindow(dpy, c->win, c->x, c->y, c->w, c->h);
@@ -20,7 +20,7 @@ Homepage: http://hg.punctweb.ro
  		}
  		else
  			configure(c);
-@@ -1727,7 +1729,12 @@ showhide(Client *c) {
+@@ -1701,7 +1703,12 @@ showhide(Client *c) {
  	if(!c)
  		return;
  	if(ISVISIBLE(c)) { /* show clients top down */

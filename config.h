@@ -1,7 +1,7 @@
-/* See LICENSE file for copyright and license details. */
+/* JokerBoy - http://hg.punctweb.ro */
 
 /* appearance */
-static const char font[]            = "-misc-fixed-medium-r-semicondensed--12-110-75-75-c-*-iso8859-2";
+static const char font[]            = "DejaVu Sans Mono:Book:size=8:antialias=true:autohint=true";
 static const char colors[MAXCOLORS][ColLast][8] = {
 	/* border     fg         bg       */
 	{ "#222222", "#666666", "#1A1A1A" }, /* 0 = normal */
@@ -44,6 +44,7 @@ static const Rule rules[] = {
 	{ "Pidgin",       NULL,        NULL,       1 << 3,       False,       False,      -1 },
 	{ "Pidgin",       NULL,        "Pidgin",   1 << 3,       True,        True,       -1 },
 	{ "Gyachi",       NULL,        NULL,       1 << 3,       False,       False,      -1 },
+	{ "Skype",        NULL,        NULL,       1 << 3,       False,       False,      -1 },
 };
 
 /* layout(s) */
@@ -90,9 +91,9 @@ static const char *tmuxcmd[]       = { terminal, "-e", "tmuxa", NULL };
 static const char *musiccmd[]      = { terminal, "-e", "ncmpcpp", NULL };
 static const char *scratchpadcmd[] = { terminal, "-name", scratchpadname, "-geometry", "150x40", NULL };
 static const char *filemancmd[]    = { "dolphin", NULL };
-static const char *browserfcmd[]   = { "firefox", "-p", "default", "-no-remote", NULL };
-static const char *browserwcmd[]   = { "firefox", "-p", "work", "-no-remote", NULL };
-static const char *browsergcmd[]   = { "firefox", "-p", "games", "-no-remote", NULL };
+static const char *browserfcmd[]   = { "firefox", "-p", "default", NULL };
+static const char *browserwcmd[]   = { "firefox", "-p", "work", NULL };
+static const char *browsergcmd[]   = { "firefox", "-p", "games", NULL };
 static const char *altbrowsercmd[] = { "chromium", NULL };
 static const char *secbrowsercmd[] = { "opera", NULL };
 static const char *editorcmd[]     = { "komodoedit", NULL };
@@ -109,10 +110,10 @@ static const char *mpdprevcmd[]    = { "ncmpcpp", "prev", NULL };
 static const char *mpdnextcmd[]    = { "ncmpcpp", "next", NULL };
 static const char *screenshotcmd[] = { "printscreen", NULL };
 static const char *lockcmd[]       = { "slock", NULL };
-static const char *suspendcmd[]    = { "dbus-send", "--system", "--print-reply", "--dest=org.freedesktop.UPower", "/org/freedesktop/UPower", "org.freedesktop.UPower.Suspend", NULL };
-static const char *hibernatecmd[]  = { "dbus-send", "--system", "--print-reply", "--dest=org.freedesktop.UPower", "/org/freedesktop/UPower", "org.freedesktop.UPower.Hibernate", NULL };
-static const char *rebootcmd[]     = { "dbus-send", "--system", "--print-reply", "--dest=org.freedesktop.ConsoleKit", "/org/freedesktop/ConsoleKit/Manager", "org.freedesktop.ConsoleKit.Manager.Restart", NULL };
-static const char *shutdowncmd[]   = { "dbus-send", "--system", "--print-reply", "--dest=org.freedesktop.ConsoleKit", "/org/freedesktop/ConsoleKit/Manager", "org.freedesktop.ConsoleKit.Manager.Stop", NULL };
+static const char *suspendcmd[]    = { "systemctl", "suspend", NULL };
+static const char *hibernatecmd[]  = { "systemctl", "hibernate", NULL };
+static const char *rebootcmd[]     = { "systemctl", "reboot", NULL };
+static const char *shutdowncmd[]   = { "systemctl", "poweroff", NULL };
 
 static Key keys[] = {
 	/* modifier                     key         function        argument */
@@ -151,8 +152,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_h,       setmfact,       {.f = -0.01} },
 	{ MODKEY,                       XK_l,       setmfact,       {.f = +0.01} },
 	{ ALTKEY,                       XK_Return,  zoom,           {0} },
-	{ MODKEY,                       XK_Tab,     view,           {0} },
-	{ ALTKEY,                       XK_Tab,     focusurgent,    {0} },
+	{ ALTKEY,                       XK_Tab,     view,           {0} },
+	{ MODKEY,                       XK_Tab,     focusurgent,    {0} },
 	{ MODKEY,                       XK_Escape,  killclient,     {0} },
 	{ MODKEY|ShiftMask,             XK_c,       centerwindow,   {0} },
 	{ MODKEY|ControlMask,           XK_n,       setlayout,      {.v = &layouts[0]} },
