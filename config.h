@@ -1,7 +1,7 @@
 /* JokerBoy - http://hg.punctweb.ro */
 
 /* appearance */
-static const char font[]            = "DejaVu Sans Mono:Book:size=8:antialias=true:autohint=true";
+static const char font[]            = "-misc-fixed-medium-r-semicondensed--12-110-75-75-c-*-iso8859-2";
 static const char colors[MAXCOLORS][ColLast][8] = {
 	/* border     fg         bg       */
 	{ "#222222", "#666666", "#1A1A1A" }, /* 0 = normal */
@@ -44,7 +44,6 @@ static const Rule rules[] = {
 	{ "Pidgin",       NULL,        NULL,       1 << 3,       False,       False,      -1 },
 	{ "Pidgin",       NULL,        "Pidgin",   1 << 3,       True,        True,       -1 },
 	{ "Gyachi",       NULL,        NULL,       1 << 3,       False,       False,      -1 },
-	{ "Skype",        NULL,        NULL,       1 << 3,       False,       False,      -1 },
 };
 
 /* layout(s) */

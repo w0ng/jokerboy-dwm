@@ -1,8 +1,8 @@
 Homepage: http://hg.punctweb.ro
 
---- a/dwm.c	2012-11-06 23:13:29.667844755 +0200
-+++ b/dwm.c	2012-11-06 23:13:29.667844755 +0200
-@@ -271,6 +271,7 @@ static void pushdown(const Arg *arg);
+--- a/dwm.c	2012-09-19 10:20:14.960714487 +0300
++++ b/dwm.c	2012-09-19 10:20:14.963714488 +0300
+@@ -270,6 +270,7 @@ static void pushdown(const Arg *arg);
  static void cycle(const Arg *arg);
  static int shifttag(int dist);
  static void tagcycle(const Arg *arg);
@@ -10,7 +10,7 @@ Homepage: http://hg.punctweb.ro
  
  /* variables */
  static const char broken[] = "broken";
-@@ -2321,6 +2322,40 @@ tagcycle(const Arg *arg) {
+@@ -2351,6 +2352,40 @@ tagcycle(const Arg *arg) {
  	view(&a);
  }
  

@@ -1,8 +1,8 @@
 Homepage: http://hg.punctweb.ro
 
---- a/dwm.c	2012-11-06 23:13:29.797844755 +0200
-+++ b/dwm.c	2012-11-06 23:13:29.797844755 +0200
-@@ -1634,7 +1634,7 @@ setmfact(const Arg *arg) {
+--- a/dwm.c	2012-09-19 10:20:15.084714495 +0300
++++ b/dwm.c	2012-09-19 10:20:15.087714495 +0300
+@@ -1658,7 +1658,7 @@ setmfact(const Arg *arg) {
  	if(!arg || !selmon->lt[selmon->sellt]->arrange)
  		return;
  	f = arg->f < 1.0 ? arg->f + selmon->mfacts[selmon->curtag] : arg->f - 1.0;

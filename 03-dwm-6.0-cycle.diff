@@ -1,8 +1,8 @@
 Homepage: http://hg.punctweb.ro
 
---- a/dwm.c	2012-11-06 23:13:29.647844755 +0200
-+++ b/dwm.c	2012-11-06 23:13:29.647844755 +0200
-@@ -268,6 +268,9 @@ static void bstack(Monitor *m);
+--- a/dwm.c	2012-09-19 10:20:14.945714486 +0300
++++ b/dwm.c	2012-09-19 10:20:14.948714487 +0300
+@@ -267,6 +267,9 @@ static void bstack(Monitor *m);
  static Client *prevtiled(Client *c);
  static void pushup(const Arg *arg);
  static void pushdown(const Arg *arg);
@@ -12,7 +12,7 @@ Homepage: http://hg.punctweb.ro
  
  /* variables */
  static const char broken[] = "broken";
-@@ -2283,6 +2286,42 @@ pushdown(const Arg *arg) {
+@@ -2313,6 +2316,42 @@ pushdown(const Arg *arg) {
  }
  
  int

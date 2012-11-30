@@ -1,8 +1,8 @@
 Homepage: http://hg.punctweb.ro
 
---- a/dwm.c	2012-11-06 23:13:29.637844755 +0200
-+++ b/dwm.c	2012-11-06 23:13:29.637844755 +0200
-@@ -265,6 +265,9 @@ static int xerrordummy(Display *dpy, XEr
+--- a/dwm.c	2012-09-19 10:20:14.931714486 +0300
++++ b/dwm.c	2012-09-19 10:20:14.934714486 +0300
+@@ -264,6 +264,9 @@ static int xerrordummy(Display *dpy, XEr
  static int xerrorstart(Display *dpy, XErrorEvent *ee);
  static void zoom(const Arg *arg);
  static void bstack(Monitor *m);
@@ -12,7 +12,7 @@ Homepage: http://hg.punctweb.ro
  
  /* variables */
  static const char broken[] = "broken";
-@@ -2220,6 +2223,65 @@ bstack(Monitor *m) {
+@@ -2250,6 +2253,65 @@ bstack(Monitor *m) {
  		}
  }
  
