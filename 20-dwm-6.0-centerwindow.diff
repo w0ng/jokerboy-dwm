@@ -1,8 +1,8 @@
 Homepage: http://hg.punctweb.ro
 
---- a/dwm.c	2012-09-19 10:20:15.186714502 +0300
-+++ b/dwm.c	2012-09-19 10:20:15.189714502 +0300
-@@ -315,6 +315,7 @@ static void updatesystray(void);
+--- a/dwm.c	2013-02-11 22:11:39.372773221 +0200
++++ b/dwm.c	2013-02-11 22:11:39.375773221 +0200
+@@ -314,6 +314,7 @@ static void updatesystray(void);
  static void updatesystrayicongeom(Client *i, int w, int h);
  static void updatesystrayiconstate(Client *i, XPropertyEvent *ev);
  static Client *wintosystrayicon(Window w);
@@ -10,7 +10,7 @@ Homepage: http://hg.punctweb.ro
  
  /* variables */
  static const char broken[] = "broken";
-@@ -2940,6 +2941,16 @@ wintosystrayicon(Window w) {
+@@ -2929,6 +2930,16 @@ wintosystrayicon(Window w) {
  	return i;
  }
  

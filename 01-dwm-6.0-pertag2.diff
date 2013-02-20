@@ -1,7 +1,7 @@
 Homepage: http://hg.punctweb.ro
 
---- a/dwm.c	2012-07-08 10:45:53.000000000 +0300
-+++ b/dwm.c	2012-09-19 10:20:14.919714487 +0300
+--- a/dwm.c	2012-12-09 20:11:11.000000000 +0200
++++ b/dwm.c	2013-02-11 22:11:39.078773234 +0200
 @@ -127,8 +127,6 @@ typedef struct {
  
  struct Monitor {
@@ -33,7 +33,7 @@ Homepage: http://hg.punctweb.ro
  	const char *class;
  	const char *instance;
  	const char *title;
-@@ -253,6 +263,7 @@ static int xerror(Display *dpy, XErrorEv
+@@ -252,6 +262,7 @@ static int xerror(Display *dpy, XErrorEv
  static int xerrordummy(Display *dpy, XErrorEvent *ee);
  static int xerrorstart(Display *dpy, XErrorEvent *ee);
  static void zoom(const Arg *arg);
@@ -41,7 +41,7 @@ Homepage: http://hg.punctweb.ro
  
  /* variables */
  static const char broken[] = "broken";
-@@ -443,7 +454,7 @@ buttonpress(XEvent *e) {
+@@ -442,7 +453,7 @@ buttonpress(XEvent *e) {
  	if(ev->window == selmon->barwin) {
  		i = x = 0;
  		do
@@ -50,7 +50,7 @@ Homepage: http://hg.punctweb.ro
  		while(ev->x >= x && ++i < LENGTH(tags));
  		if(i < LENGTH(tags)) {
  			click = ClkTagBar;
-@@ -516,6 +527,9 @@ cleanupmon(Monitor *mon) {
+@@ -515,6 +526,9 @@ cleanupmon(Monitor *mon) {
  	}
  	XUnmapWindow(dpy, mon->barwin);
  	XDestroyWindow(dpy, mon->barwin);
@@ -60,7 +60,7 @@ Homepage: http://hg.punctweb.ro
  	free(mon);
  }
  
-@@ -535,6 +549,7 @@ void
+@@ -534,6 +548,7 @@ void
  clientmessage(XEvent *e) {
  	XClientMessageEvent *cme = &e->xclient;
  	Client *c = wintoclient(cme->window);
@@ -68,7 +68,7 @@ Homepage: http://hg.punctweb.ro
  
  	if(!c)
  		return;
-@@ -547,6 +562,10 @@ clientmessage(XEvent *e) {
+@@ -546,6 +561,10 @@ clientmessage(XEvent *e) {
  		if(!ISVISIBLE(c)) {
  			c->mon->seltags ^= 1;
  			c->mon->tagset[c->mon->seltags] = c->tags;
@@ -79,7 +79,7 @@ Homepage: http://hg.punctweb.ro
  		}
  		pop(c);
  	}
-@@ -650,17 +669,31 @@ configurerequest(XEvent *e) {
+@@ -649,17 +668,31 @@ configurerequest(XEvent *e) {
  Monitor *
  createmon(void) {
  	Monitor *m;
@@ -115,7 +115,7 @@ Homepage: http://hg.punctweb.ro
  	return m;
  }
  
-@@ -733,9 +766,9 @@ drawbar(Monitor *m) {
+@@ -722,9 +755,9 @@ drawbar(Monitor *m) {
  	}
  	dc.x = 0;
  	for(i = 0; i < LENGTH(tags); i++) {
@@ -127,7 +127,7 @@ Homepage: http://hg.punctweb.ro
  		drawsquare(m == selmon && selmon->sel && selmon->sel->tags & 1 << i,
  		           occ & 1 << i, urg & 1 << i, col);
  		dc.x += dc.w;
-@@ -1035,7 +1068,7 @@ grabkeys(void) {
+@@ -1024,7 +1057,7 @@ grabkeys(void) {
  
  void
  incnmaster(const Arg *arg) {
@@ -136,7 +136,7 @@ Homepage: http://hg.punctweb.ro
  	arrange(selmon);
  }
  
-@@ -1576,7 +1609,7 @@ setlayout(const Arg *arg) {
+@@ -1565,7 +1598,7 @@ setlayout(const Arg *arg) {
  	if(!arg || !arg->v || arg->v != selmon->lt[selmon->sellt])
  		selmon->sellt ^= 1;
  	if(arg && arg->v)
@@ -145,7 +145,7 @@ Homepage: http://hg.punctweb.ro
  	strncpy(selmon->ltsymbol, selmon->lt[selmon->sellt]->symbol, sizeof selmon->ltsymbol);
  	if(selmon->sel)
  		arrange(selmon);
-@@ -1591,10 +1624,10 @@ setmfact(const Arg *arg) {
+@@ -1580,10 +1613,10 @@ setmfact(const Arg *arg) {
  
  	if(!arg || !selmon->lt[selmon->sellt]->arrange)
  		return;
@@ -158,7 +158,7 @@ Homepage: http://hg.punctweb.ro
  	arrange(selmon);
  }
  
-@@ -1730,13 +1763,13 @@ tile(Monitor *m) {
+@@ -1719,13 +1752,13 @@ tile(Monitor *m) {
  	if(n == 0)
  		return;
  
@@ -176,7 +176,7 @@ Homepage: http://hg.punctweb.ro
  			resize(c, m->wx, m->wy + my, mw - (2*c->bw), h - (2*c->bw), False);
  			my += HEIGHT(c);
  		}
-@@ -1770,13 +1803,24 @@ togglefloating(const Arg *arg) {
+@@ -1759,13 +1792,24 @@ togglefloating(const Arg *arg) {
  
  void
  toggletag(const Arg *arg) {
@@ -202,7 +202,7 @@ Homepage: http://hg.punctweb.ro
  		focus(NULL);
  		arrange(selmon);
  	}
-@@ -2082,11 +2126,26 @@ updatewmhints(Client *c) {
+@@ -2071,11 +2115,26 @@ updatewmhints(Client *c) {
  
  void
  view(const Arg *arg) {
@@ -230,7 +230,7 @@ Homepage: http://hg.punctweb.ro
  	focus(NULL);
  	arrange(selmon);
  }
-@@ -2165,6 +2224,32 @@ zoom(const Arg *arg) {
+@@ -2154,6 +2213,32 @@ zoom(const Arg *arg) {
  	pop(c);
  }
  

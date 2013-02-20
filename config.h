@@ -44,6 +44,7 @@ static const Rule rules[] = {
 	{ "Pidgin",       NULL,        NULL,       1 << 3,       False,       False,      -1 },
 	{ "Pidgin",       NULL,        "Pidgin",   1 << 3,       True,        True,       -1 },
 	{ "Gyachi",       NULL,        NULL,       1 << 3,       False,       False,      -1 },
+	{ "Skype",        NULL,        NULL,       1 << 3,       False,       False,      -1 },
 };
 
 /* layout(s) */

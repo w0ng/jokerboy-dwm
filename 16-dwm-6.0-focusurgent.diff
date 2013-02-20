@@ -1,8 +1,8 @@
 Homepage: http://hg.punctweb.ro
 
---- a/dwm.c	2012-09-19 10:20:15.126714498 +0300
-+++ b/dwm.c	2012-09-19 10:20:15.129714498 +0300
-@@ -277,6 +277,7 @@ static void pidgin(Monitor *m);
+--- a/dwm.c	2013-02-11 22:11:39.315773223 +0200
++++ b/dwm.c	2013-02-11 22:11:39.318773223 +0200
+@@ -276,6 +276,7 @@ static void pidgin(Monitor *m);
  static void togglescratch(const Arg *arg);
  static void togglemax(const Arg *arg);
  static void settagsatom(Window w, unsigned int tags);
@@ -10,7 +10,7 @@ Homepage: http://hg.punctweb.ro
  
  /* variables */
  static const char broken[] = "broken";
-@@ -2553,6 +2554,32 @@ settagsatom(Window w, unsigned int tags)
+@@ -2542,6 +2543,32 @@ settagsatom(Window w, unsigned int tags)
  	                PropModeReplace, (unsigned char*)&tags, 1);
  }
  

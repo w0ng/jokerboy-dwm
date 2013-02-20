@@ -1,7 +1,7 @@
 Homepage: http://hg.punctweb.ro
 
---- a/dwm.c	2012-09-19 10:20:15.170714501 +0300
-+++ b/dwm.c	2012-09-19 10:20:15.173714501 +0300
+--- a/dwm.c	2013-02-11 22:11:39.355773222 +0200
++++ b/dwm.c	2013-02-11 22:11:39.360773221 +0200
 @@ -57,12 +57,31 @@
  #define TEXTW(X)                (textnw(X, strlen(X)) + dc.font.height)
  #define MAXCOLORS               8
@@ -48,7 +48,7 @@ Homepage: http://hg.punctweb.ro
  /* function declarations */
  static void applyrules(Client *c);
  static Bool applysizehints(Client *c, int *x, int *y, int *w, int *h, Bool interact);
-@@ -228,7 +253,7 @@ static void resizemouse(const Arg *arg);
+@@ -227,7 +252,7 @@ static void resizemouse(const Arg *arg);
  static void restack(Monitor *m);
  static void run(void);
  static void scan(void);
@@ -57,7 +57,7 @@ Homepage: http://hg.punctweb.ro
  static void sendmon(Client *c, Monitor *m);
  static void setclientstate(Client *c, long state);
  static void setfocus(Client *c);
-@@ -281,6 +306,15 @@ static void togglemax(const Arg *arg);
+@@ -280,6 +305,15 @@ static void togglemax(const Arg *arg);
  static void settagsatom(Window w, unsigned int tags);
  static void focusurgent(const Arg *arg);
  static void savefloat(Client *c);
@@ -73,7 +73,7 @@ Homepage: http://hg.punctweb.ro
  
  /* variables */
  static const char broken[] = "broken";
-@@ -304,15 +338,18 @@ static void (*handler[LASTEvent]) (XEven
+@@ -303,15 +337,18 @@ static void (*handler[LASTEvent]) (XEven
  	[MapRequest] = maprequest,
  	[MotionNotify] = motionnotify,
  	[PropertyNotify] = propertynotify,
@@ -93,7 +93,7 @@ Homepage: http://hg.punctweb.ro
  
  /* configuration, allows nested code to access above variables */
  #include "config.h"
-@@ -531,6 +568,11 @@ cleanup(void) {
+@@ -530,6 +567,11 @@ cleanup(void) {
  	XFreeCursor(dpy, cursor[CurMove]);
  	while(mons)
  		cleanupmon(mons);
@@ -105,7 +105,7 @@ Homepage: http://hg.punctweb.ro
  	XSync(dpy, False);
  	XSetInputFocus(dpy, PointerRoot, RevertToPointerRoot, CurrentTime);
  	XDeleteProperty(dpy, root, netatom[NetActiveWindow]);
-@@ -568,10 +610,49 @@ clearurgent(Client *c) {
+@@ -567,10 +609,49 @@ clearurgent(Client *c) {
  
  void
  clientmessage(XEvent *e) {
@@ -155,7 +155,7 @@ Homepage: http://hg.punctweb.ro
  	if(!c)
  		return;
  	if(cme->message_type == netatom[NetWMState]) {
-@@ -627,7 +708,7 @@ configurenotify(XEvent *e) {
+@@ -626,7 +707,7 @@ configurenotify(XEvent *e) {
  			dc.drawable = XCreatePixmap(dpy, root, sw, bh, DefaultDepth(dpy, screen));
  			updatebars();
  			for(m = mons; m; m = m->next)
@@ -164,7 +164,7 @@ Homepage: http://hg.punctweb.ro
  			focus(NULL);
  			arrange(NULL);
  		}
-@@ -727,6 +808,11 @@ destroynotify(XEvent *e) {
+@@ -726,6 +807,11 @@ destroynotify(XEvent *e) {
  
  	if((c = wintoclient(ev->window)))
  		unmanage(c, True);
@@ -176,7 +176,7 @@ Homepage: http://hg.punctweb.ro
  }
  
  void
-@@ -783,6 +869,7 @@ drawbar(Monitor *m) {
+@@ -772,6 +858,7 @@ drawbar(Monitor *m) {
  	unsigned int a = 0, s = 0;
  	Client *c;
  
@@ -184,7 +184,7 @@ Homepage: http://hg.punctweb.ro
  	for(c = m->clients; c; c = c->next) {
  		occ |= c->tags;
  		if(c->isurgent)
-@@ -811,6 +898,9 @@ drawbar(Monitor *m) {
+@@ -800,6 +887,9 @@ drawbar(Monitor *m) {
  	if(m == selmon) { /* status is only drawn on selected monitor */
  		dc.w = textnw(stext, strlen(stext));
  		dc.x = m->ww - dc.w;
@@ -194,7 +194,7 @@ Homepage: http://hg.punctweb.ro
  		if(dc.x < x) {
  			dc.x = x;
  			dc.w = m->ww - x;
-@@ -839,6 +929,7 @@ drawbars(void) {
+@@ -828,6 +918,7 @@ drawbars(void) {
  
  	for(m = mons; m; m = m->next)
  		drawbar(m);
@@ -202,7 +202,7 @@ Homepage: http://hg.punctweb.ro
  }
  
  void
-@@ -1014,10 +1105,17 @@ getatomprop(Client *c, Atom prop) {
+@@ -1003,10 +1094,17 @@ getatomprop(Client *c, Atom prop) {
  	unsigned long dl;
  	unsigned char *p = NULL;
  	Atom da, atom = None;
@@ -221,7 +221,7 @@ Homepage: http://hg.punctweb.ro
  		XFree(p);
  	}
  	return atom;
-@@ -1193,7 +1291,7 @@ void
+@@ -1182,7 +1280,7 @@ void
  killclient(const Arg *arg) {
  	if(!selmon->sel)
  		return;
@@ -230,7 +230,7 @@ Homepage: http://hg.punctweb.ro
  		XGrabServer(dpy);
  		XSetErrorHandler(xerrordummy);
  		XSetCloseDownMode(dpy, DestroyAll);
-@@ -1304,7 +1402,13 @@ void
+@@ -1293,7 +1391,13 @@ void
  maprequest(XEvent *e) {
  	static XWindowAttributes wa;
  	XMapRequestEvent *ev = &e->xmaprequest;
@@ -244,7 +244,7 @@ Homepage: http://hg.punctweb.ro
  	if(!XGetWindowAttributes(dpy, ev->window, &wa))
  		return;
  	if(wa.override_redirect)
-@@ -1416,6 +1520,16 @@ propertynotify(XEvent *e) {
+@@ -1405,6 +1509,16 @@ propertynotify(XEvent *e) {
  	Window trans;
  	XPropertyEvent *ev = &e->xproperty;
  
@@ -261,7 +261,7 @@ Homepage: http://hg.punctweb.ro
  	if((ev->window == root) && (ev->atom == XA_WM_NAME))
  		updatestatus();
  	else if(ev->state == PropertyDelete)
-@@ -1624,25 +1738,35 @@ setclientstate(Client *c, long state) {
+@@ -1613,25 +1727,35 @@ setclientstate(Client *c, long state) {
  }
  
  Bool
@@ -308,7 +308,7 @@ Homepage: http://hg.punctweb.ro
  	}
  	return exists;
  }
-@@ -1655,7 +1779,7 @@ setfocus(Client *c) {
+@@ -1644,7 +1768,7 @@ setfocus(Client *c) {
   		                XA_WINDOW, 32, PropModeReplace,
   		                (unsigned char *) &(c->win), 1);
  	}
@@ -317,7 +317,7 @@ Homepage: http://hg.punctweb.ro
  }
  
  void
-@@ -1750,6 +1874,12 @@ setup(void) {
+@@ -1739,6 +1863,12 @@ setup(void) {
  	netatom[NetWMWindowTypeDialog] = XInternAtom(dpy, "_NET_WM_WINDOW_TYPE_DIALOG", False);
  	netatom[NetClientList] = XInternAtom(dpy, "_NET_CLIENT_LIST", False);
  	dwmatom[DWMTags] = XInternAtom(dpy, "_DWM_TAGS", False);
@@ -330,7 +330,7 @@ Homepage: http://hg.punctweb.ro
  	/* init cursors */
  	cursor[CurNormal] = XCreateFontCursor(dpy, XC_left_ptr);
  	cursor[CurResize] = XCreateFontCursor(dpy, XC_sizing);
-@@ -1765,6 +1895,8 @@ setup(void) {
+@@ -1754,6 +1884,8 @@ setup(void) {
  	XSetLineAttributes(dpy, dc.gc, 1, LineSolid, CapButt, JoinMiter);
  	if(!dc.font.set)
  		XSetFont(dpy, dc.gc, dc.font.xfont->fid);
@@ -339,7 +339,7 @@ Homepage: http://hg.punctweb.ro
  	/* init bars */
  	updatebars();
  	updatestatus();
-@@ -1894,7 +2026,18 @@ void
+@@ -1883,7 +2015,18 @@ void
  togglebar(const Arg *arg) {
  	selmon->showbar = !selmon->showbar;
  	updatebarpos(selmon);
@@ -359,7 +359,7 @@ Homepage: http://hg.punctweb.ro
  	arrange(selmon);
  }
  
-@@ -1998,10 +2141,16 @@ unmapnotify(XEvent *e) {
+@@ -1987,10 +2130,16 @@ unmapnotify(XEvent *e) {
  		else
  			unmanage(c, False);
  	}
@@ -376,7 +376,7 @@ Homepage: http://hg.punctweb.ro
  	Monitor *m;
  	XSetWindowAttributes wa = {
  		.override_redirect = True,
-@@ -2011,7 +2160,10 @@ updatebars(void) {
+@@ -2000,7 +2149,10 @@ updatebars(void) {
  	for(m = mons; m; m = m->next) {
  		if (m->barwin)
  			continue;
@@ -388,7 +388,7 @@ Homepage: http://hg.punctweb.ro
  		                          CopyFromParent, DefaultVisual(dpy, screen),
  		                          CWOverrideRedirect|CWBackPixmap|CWEventMask, &wa);
  		XDefineCursor(dpy, m->barwin, cursor[CurNormal]);
-@@ -2639,6 +2791,155 @@ savefloat(Client *c) {
+@@ -2628,6 +2780,155 @@ savefloat(Client *c) {
  	c->sfh = c->h;
  }
  

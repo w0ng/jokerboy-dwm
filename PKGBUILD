@@ -9,7 +9,7 @@ arch=('i686' 'x86_64')
 license=('MIT')
 options=('zipman')
 depends=('libx11' 'libxinerama' 'dmenu')
-source=("${pkgname}-${pkgver}.tar.gz::http://hg.suckless.org/${pkgname}/archive/tip.tar.gz"
+source=("${pkgname}-${pkgver}.tar.gz::http://git.suckless.org/dwm/snapshot/dwm-master.tar.bz2"
         "config.h"
         "01-${pkgname}-${pkgver}-pertag2.diff"
         "02-${pkgname}-${pkgver}-push.diff"
@@ -31,28 +31,28 @@ source=("${pkgname}-${pkgver}.tar.gz::http://hg.suckless.org/${pkgname}/archive/
         "18-${pkgname}-${pkgver}-save_floats.diff"
         "19-${pkgname}-${pkgver}-systray.diff"
         "20-${pkgname}-${pkgver}-centerwindow.diff")
-sha256sums=('bb5c4bb7ba052a5498118eeb571165997f7dae62580c1be1a5cdf11e03bc8127'
-            'fa6f00dd8eeb8eb541debcd1e2d7d2ddb1fe893369a83d20752a62b5988ad684'
-            '9a24dd83b6dbf66807f4c5eaff5e308cdcfbdb19491bf5a9a3c5d968bbac856e'
-            '4b133507f4b477f7a294d070169c363baf9366779e33c6b1ea1dc33e61b14979'
-            '31adb170989315b20e820933a239f688331b931a242544c0650127fba926579e'
-            '60c13c3de317077e4c59889060fe980276bb29ee9923d9684d1ffb297b1fe7a5'
-            '825d7d81648c0151d9129e260ba6e5bd746be0aba66ad2d8682a0465269e05d0'
-            'dcf6898c1695410d2a513beebe94d034e45f7414362c46e53802c5152bb0839c'
-            '65fce4568887913c5af34e0dc22fca17b5eaac8075644748bfdef6dcf61937c4'
-            '42d2a1c8ffdecdecfd0185fd98da8096b5a417dfcdf4874bb4c50594fae9712c'
-            '5f2fa14cd829dd780341d33b695201a739969d0fe77866244c6bff6c55e11c9f'
-            '328578d3e53c1ec4110c1927b5d7dc3eb38d66d9b96f3aa22ca19f1203eaf4d0'
-            '1036125769ce44b2116e76f0cfae65cab921ca08b88521b15b37a280fd4cc666'
-            '69b4f62297860b7a2d5afe563e3d9eacdcb913f96cb97cc1ec920168de59150a'
-            'e7c0ea64be99c9f8dfadec13e1cacdb1fa5624477db18a2e670cd81ff4941fa1'
-            'f5b0f051897249abfadba43357385b2f880693a7b301871c2827a63b8f3f9cfe'
-            'ad3f6ca7d05922a463eeb6cc31772ae509d5624ecf738ba50219bd74ce4e7da8'
-            '77f494f11e1b1c6c7037a1a7385ee4c1fa0d1e8d689d57d7e196203bc9ff74e6'
-            '871e9d7113a5a63edae75762c351214dc6496347eb0c6bdaa1f76d3759b8e4c5'
-            '2d5de1197e20a4c12b06b38effa03a69c6022e2b6a4483c37ccb5b4430dfd36a'
-            'd8cf91eac06b51aef6c6343546378b4fd021290f529119455e6debe583aaea27'
-            'fb1dcef708397e1372e4a5e6733136189053d7b4dfc689accfd85246f314e704')
+sha256sums=('f03e601f9bd2accec72ebe1a7d35f0994a859b527a4be36fdbd11bb8774bb6df'
+            'aa1ab98d9ab0de32337e7550c132860d39add78f22067f97ba04ca0e2a4d6413'
+            'fddfa0154d942111f56d12eb20f9c9d2942c40373ba22c90c3431a1cc0499a8e'
+            'cae33cda301b75306a381bf7acce4a4f596a887514c2a8fb39458cf4084bda7c'
+            'db3b59de7b1240d40caa087f56fdf61542af3ffe7ed8287f82ced2df6ecf974e'
+            '5c9a19f83b07467b40c7e2af145a5074782a6ee29b761a22717175badbf1b6d5'
+            'e7a52355a2df3cd6a84bf44deb4ae85e9affd0c0a71d1131356d98c0c73b9791'
+            '4446773a6d3d74e2525ac9d35ca2f7cccb071bc6894136cdb3c17abdf8fb799c'
+            '500a0219119ecfa09a982a2b335ab4289ff3e65b8042f73aafbc42955e507658'
+            '739a11a6432132fb839e844ca8287aa7d1c0f2b1bf5a418878cf8f2df58ac418'
+            'a0801f59e9eea645d8e1d5d9e8b9ff247963e795dd5431e092238bcb9e78226b'
+            'f0be6d13e9e5cae92c38b2ffe8071b4f7f5123e1463e55bcc5e0525a5d4fb96d'
+            '23bcc5b5568c14140b1f45647648eb7392dc69b6ec9a799012f8b944b027feb2'
+            'bb2a785082646c65719ce1fa3701c7b74dcbf11ecd559d3cd95470b6a88aeec4'
+            '6ef302941bd0829ff36a1ba0ca7b44534f7172a09bfcbac10e675c3fe64d4861'
+            '2d44e6a79bdd4e2c30a11dbffe5701574f3799ae5f6a15b6c82edab52c265769'
+            'ffdff7f2c60378f46973be615a4df3aa41ed4d6aa3aa804e5eb6cda967d1bd54'
+            'd7e9a5ca6f46c1e60d5fd6d3ec16162472ebd0b7be7567f861a542234bcfb8dc'
+            'f2c81fde0f2b8c95d0e23a42d261a50038d453f33da8c98ff48a6bcd8bbd147a'
+            '3a06767c1d2951b8e560c24538b39fbc59a4e140ef1e0f3faef2061ccc075ce3'
+            '2a4b8aa626a16052637aff9b918f11c3262a03c70d421c9c5d1b90ceec9e3927'
+            '0c2c198a604c46f7940355736bba9184f7e3b379720ce7e4e6d588c94e1aec90')
 
 build() {
   cd "${srcdir}" && cd "`find . -type d -name dwm-\*`"

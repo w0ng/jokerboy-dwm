@@ -1,7 +1,7 @@
 Homepage: http://hg.punctweb.ro
 
---- a/dwm.c	2012-09-19 10:20:15.098714496 +0300
-+++ b/dwm.c	2012-09-19 10:20:15.101714496 +0300
+--- a/dwm.c	2013-02-11 22:11:39.290773224 +0200
++++ b/dwm.c	2013-02-11 22:11:39.292773224 +0200
 @@ -63,6 +63,7 @@ enum { NetSupported, NetWMName, NetWMSta
         NetWMFullscreen, NetActiveWindow, NetWMWindowType,
         NetWMWindowTypeDialog, NetClientList, NetLast };     /* EWMH atoms */
@@ -10,7 +10,7 @@ Homepage: http://hg.punctweb.ro
  enum { ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle,
         ClkClientWin, ClkRootWin, ClkLast };             /* clicks */
  
-@@ -274,6 +275,7 @@ static void gaplessgrid(Monitor *m);
+@@ -273,6 +274,7 @@ static void gaplessgrid(Monitor *m);
  static void pidgin(Monitor *m);
  static void togglescratch(const Arg *arg);
  static void togglemax(const Arg *arg);
@@ -18,7 +18,7 @@ Homepage: http://hg.punctweb.ro
  
  /* variables */
  static const char broken[] = "broken";
-@@ -299,7 +301,7 @@ static void (*handler[LASTEvent]) (XEven
+@@ -298,7 +300,7 @@ static void (*handler[LASTEvent]) (XEven
  	[PropertyNotify] = propertynotify,
  	[UnmapNotify] = unmapnotify
  };
@@ -27,7 +27,7 @@ Homepage: http://hg.punctweb.ro
  static Bool running = True;
  static Cursor cursor[CurLast];
  static Display *dpy;
-@@ -1177,6 +1179,10 @@ manage(Window w, XWindowAttributes *wa)
+@@ -1166,6 +1168,10 @@ manage(Window w, XWindowAttributes *wa)
  	Client *c, *t = NULL;
  	Window trans = None;
  	XWindowChanges wc;
@@ -38,7 +38,7 @@ Homepage: http://hg.punctweb.ro
  
  	if(!(c = calloc(1, sizeof(Client))))
  		die("fatal: could not malloc() %u bytes\n", sizeof(Client));
-@@ -1189,7 +1195,13 @@ manage(Window w, XWindowAttributes *wa)
+@@ -1178,7 +1184,13 @@ manage(Window w, XWindowAttributes *wa)
  	else {
  		c->mon = selmon;
  		applyrules(c);
@@ -52,7 +52,7 @@ Homepage: http://hg.punctweb.ro
  	/* geometry */
  	c->x = c->oldx = wa->x;
  	c->y = c->oldy = wa->y;
-@@ -1692,6 +1704,7 @@ setup(void) {
+@@ -1681,6 +1693,7 @@ setup(void) {
  	netatom[NetWMWindowType] = XInternAtom(dpy, "_NET_WM_WINDOW_TYPE", False);
  	netatom[NetWMWindowTypeDialog] = XInternAtom(dpy, "_NET_WM_WINDOW_TYPE_DIALOG", False);
  	netatom[NetClientList] = XInternAtom(dpy, "_NET_CLIENT_LIST", False);
@@ -60,7 +60,7 @@ Homepage: http://hg.punctweb.ro
  	/* init cursors */
  	cursor[CurNormal] = XCreateFontCursor(dpy, XC_left_ptr);
  	cursor[CurResize] = XCreateFontCursor(dpy, XC_sizing);
-@@ -1769,6 +1782,7 @@ void
+@@ -1758,6 +1771,7 @@ void
  tag(const Arg *arg) {
  	if(selmon->sel && arg->ui & TAGMASK) {
  		selmon->sel->tags = arg->ui & TAGMASK;
@@ -68,7 +68,7 @@ Homepage: http://hg.punctweb.ro
  		focus(NULL);
  		arrange(selmon);
  		if(viewontag)
-@@ -1861,6 +1875,7 @@ toggletag(const Arg *arg) {
+@@ -1850,6 +1864,7 @@ toggletag(const Arg *arg) {
  		}
  		selmon->sel->tags = newtags;
  		selmon->lt[selmon->sellt] = selmon->lts[selmon->curtag];
@@ -76,7 +76,7 @@ Homepage: http://hg.punctweb.ro
  		focus(NULL);
  		arrange(selmon);
  	}
-@@ -2523,6 +2538,12 @@ togglemax(const Arg *arg) {
+@@ -2512,6 +2527,12 @@ togglemax(const Arg *arg) {
  	}
  }
  
